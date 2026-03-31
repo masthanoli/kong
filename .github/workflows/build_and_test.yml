@@ -4,6 +4,8 @@ on:
     paths-ignore:
     # ignore markdown files (CHANGELOG.md, README.md, etc.)
     - '**/*.md'
+    - 'COPYRIGHT'
+    - 'LICENSE'
     - '.github/workflows/release.yml'
     - 'changelog/**'
     - 'kong.conf.default'
@@ -13,6 +15,7 @@ on:
     - '**/*.md'
     # ignore PRs for the generated COPYRIGHT file
     - 'COPYRIGHT'
+    - 'LICENSE'
     branches:
     - master
     - release/*
@@ -246,9 +249,6 @@ jobs:
       with:
         path: ${{ env.BUILD_ROOT }}
         key: ${{ needs.build.outputs.cache-key }}
-
-    - name: Build WASM Test Filters
-      uses: ./.github/actions/build-wasm-test-filters
 
     - name: Add gRPC test host names
       run: |
